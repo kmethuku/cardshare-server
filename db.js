@@ -23,12 +23,14 @@ const deckSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   src: { type: String, required: false },
-  cards: { type: [cardSchema], required: true }
+  cards: { type: [cardSchema], required: true },
+  genre: { type: String, required: true },
+  key: { type: String, required: true },
+  votes: { type: Number, required: false, default: 0 }
 });
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
-  passHash: { type: String, required: true },
+  UID: { type: String, required: true },
   email: { type: String, required: true },
   myDecks: { type: [deckSchema], required: false },
   savedDecks: { type: [deckSchema], required: false }
@@ -37,28 +39,3 @@ const userSchema = new mongoose.Schema({
 const Users = mongoose.model('User', userSchema);
 
 module.exports = { Users };
-
-/*const { Users } = require ('../db');
-
-async function getAll() {
-  let all = await Users.find({ username: 'Kiran' }, 'myDecks');
-  return all;
-}
-
-async function getOne(title) {
-  let one = await Users.find({ username: 'Kiran'}, { myDecks: { $elemMatch: { "title": title } } });
-  return one;
-}
-
-async function postOne(body) {
-  let res = await Users.updateOne({ username: 'Kiran' }, { $push: { myDecks: body } });
-  // console.log(res)
-  // return res.nModified;
-}
-
-async function deleteOne(title) {
-  let res = await Users.deleteOne({ username: 'Kiran'}, { myDecks: { $elemMatch: { "title": title } } });
-  return res.deletedCount;
-}
-
-module.exports = { getAll, getOne, postOne, deleteOne } */
