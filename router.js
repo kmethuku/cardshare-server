@@ -7,27 +7,33 @@ const discoverController = require('./controllers/discoverController');
 // for new user
 router.post('/users', userController.postOne);
 
+router.get('/users/:email', userController.getOne);
+
+router.delete('/users', userController.deleteAll);
+
 // for created decks
-router.get('/myDecks', createController.getAll);
+router.get('/myDecks/:email', createController.getAll);
 
-router.post('/myDecks', createController.postOne);
+router.post('/myDecks/:email', createController.postOne);
 
-router.delete('/myDecks/:id', createController.deleteOne);
+router.delete('/myDecks/:email-:id', createController.deleteOne);
 
 // for saved decks
-router.get('/savedDecks', studyController.getAll);
+router.get('/savedDecks/:email', studyController.getAll);
 
-router.post('/savedDecks', studyController.saveOne);
+router.post('/savedDecks/:email', studyController.saveOne);
 
-router.delete('/savedDecks/:id', studyController.deleteOne);
+router.delete('/savedDecks/:email-:id', studyController.deleteOne);
 
 // for discover decks
 router.get('/discover', discoverController.getPopular);
 
-router.get('/discover/genre', discoverController.getByGenre);
+router.get('/discover/genre/:genre', discoverController.getByGenre);
 
-router.get('/discover/key', discoverController.getByKey);
+router.get('/discover/OLID/:OLID', discoverController.getByOLID);
 
-router.post('/discover/vote', discoverController.postVote);
+router.get('/discover/:id', discoverController.getById);
+
+router.post('/discover/vote/:id-:direction', discoverController.postVote);
 
 module.exports = router;

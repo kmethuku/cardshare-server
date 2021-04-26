@@ -11,16 +11,25 @@ async function getPopular(req, res) {
 
 async function getByGenre(req, res) {
   try {
-    let some = await discoverModel.getByGenre(req.body.genre);
+    let some = await discoverModel.getByGenre(req.params.genre);
     some.length === 0 ? res.status(404).send(some) : res.status(200).send(some);
   } catch (err) {
     res.status(404).send(err);
   }
 }
 
-async function getByKey(req, res) {
+async function getByOLID(req, res) {
   try {
-    let some = await discoverModel.getByKey(req.body.key);
+    let some = await discoverModel.getByOLID(req.params.OLID);
+    some.length === 0 ? res.status(404).send(some) : res.status(200).send(some);
+  } catch (err) {
+    res.status(404).send(err);
+  }
+}
+
+async function getById(req, res) {
+  try {
+    let some = await discoverModel.getById(req.params.id);
     some.length === 0 ? res.status(404).send(some) : res.status(200).send(some);
   } catch (err) {
     res.status(404).send(err);
@@ -29,11 +38,12 @@ async function getByKey(req, res) {
 
 async function postVote(req, res) {
   try {
-    let nModified = await discoverModel.postVote(req.body._id, req.body.direction);
+    let nModified = await discoverModel.postVote(req.params.id, req.params.direction);
+    console.log('id and dir',req.params)
     nModified === 0 ? res.status(404).send(`No votes added`) : res.status(201).send(`Added ${nModified} vote(s)`);
   } catch (err) {
     res.status(404).send(err);
   }
 }
 
-module.exports = { getPopular, getByGenre, getByKey, postVote };
+module.exports = { getPopular, getByGenre, getByOLID, getById, postVote };

@@ -25,12 +25,13 @@ const deckSchema = new mongoose.Schema({
   src: { type: String, required: false },
   cards: { type: [cardSchema], required: true },
   genre: { type: String, required: true },
-  key: { type: String, required: true },
-  votes: { type: Number, required: false, default: 0 }
+  OLID: { type: String, required: true },
+  votes: { type: Number, required: true, default: 0 },
+  creator: { type: String, required: true }
 });
 
 const userSchema = new mongoose.Schema({
-  UID: { type: String, required: true },
+  username: { type: String, required: true },
   email: { type: String, required: true },
   myDecks: { type: [deckSchema], required: false },
   savedDecks: { type: [deckSchema], required: false }

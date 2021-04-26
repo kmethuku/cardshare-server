@@ -1,17 +1,17 @@
 const { Users } = require ('../db');
 
-async function getAll(UID) {
-  let all = await Users.find({ UID: UID }, 'savedDecks');
+async function getAll(email) {
+  let all = await Users.find({ email: email }, 'savedDecks');
   return all;
 }
 
-async function saveOne(body) {
-  let res = await Users.updateOne({ UID: body.UID }, { $push: { savedDecks: body } });
+async function saveOne(email, body) {
+  let res = await Users.updateOne({ email: email }, { $push: { savedDecks: body } });
   return res.nModified;
 }
 
-async function deleteOne(UID, id) {
-  let res = await Users.updateOne({ UID: UID }, { $pull: { savedDecks: { _id: id } } });
+async function deleteOne(email, id) {
+  let res = await Users.updateOne({ email: email }, { $pull: { savedDecks: { _id: id } } });
   return res.nModified;
 }
 
