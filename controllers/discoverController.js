@@ -39,7 +39,6 @@ async function getById(req, res) {
 async function postVote(req, res) {
   try {
     let nModified = await discoverModel.postVote(req.params.id, req.params.direction);
-    console.log('id and dir',req.params)
     nModified === 0 ? res.status(404).send(`No votes added`) : res.status(201).send(`Added ${nModified} vote(s)`);
   } catch (err) {
     res.status(404).send(err);

@@ -2,7 +2,6 @@ const { Users } = require ('../db');
 
 async function postOne(body) {
   let res = await Users.create(body);
-  console.log('res in users',res)
   return res.email;
 }
 
@@ -13,7 +12,6 @@ async function getOne(email) {
 
 async function deleteAll() {
   let deleted = await Users.deleteMany({});
-  console.log('deleted', deleted)
   return deleted;
 }
 

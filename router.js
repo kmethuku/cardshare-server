@@ -7,8 +7,10 @@ const discoverController = require('./controllers/discoverController');
 // for new user
 router.post('/users', userController.postOne);
 
+// this route is just used for development/testing
 router.get('/users/:email', userController.getOne);
 
+// this route is just used for development/testing
 router.delete('/users', userController.deleteAll);
 
 // for created decks

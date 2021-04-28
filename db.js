@@ -4,6 +4,7 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
+//this is not implemented, couldn't get multer to work
 const highlightSchema = new mongoose.Schema({
   lastModified: { type: Number, required: true },
   lastModifiedDate: { type: Date, required: true },

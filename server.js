@@ -15,5 +15,3 @@ server.use(router);
 
 server.listen(port, () => console.log(
   `Server listening on port ${port}...`));
-
-// npm i express cors mongoose mongodb nodemon
