@@ -1,12 +1,13 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import { Request, Response } from 'express';
-import { getPopular, getByGenre, getByOLID, getById, postVote } from '../models/discoverModel';
-import { User } from '../db';
+import {
+  getPopular, getByGenre, getByOLID, getById, postVote,
+} from '../models/discoverModel';
 
-async function getPopular(req:Request, res:Response) : Promise<void> {
+async function getPopularDiscover(req:Request, res:Response) : Promise<void> {
   try {
-    const all:Array<User> = await getPopular();
+    const all = await getPopular();
     if (all.length === 0) {
       res.status(404).send(all);
     } else res.status(200).send(all);
@@ -15,7 +16,7 @@ async function getPopular(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function getByGenre(req:Request, res:Response) : Promise<void> {
+async function getByGenreDiscover(req:Request, res:Response) : Promise<void> {
   try {
     const some = await getByGenre(req.params.genre);
     if (some.length === 0) {
@@ -26,7 +27,7 @@ async function getByGenre(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function getByOLID(req:Request, res:Response) : Promise<void> {
+async function getByOLIDDiscover(req:Request, res:Response) : Promise<void> {
   try {
     const some = await getByOLID(req.params.OLID);
     if (some.length === 0) {
@@ -37,7 +38,7 @@ async function getByOLID(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function getById(req:Request, res:Response) : Promise<void> {
+async function getByIdDiscover(req:Request, res:Response) : Promise<void> {
   try {
     const some = await getById(req.params.id);
     if (some.length === 0) {
@@ -48,9 +49,9 @@ async function getById(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function postVote(req:Request, res: Response) : Promise<void> {
+async function postVoteDiscover(req:Request, res: Response) : Promise<void> {
   try {
-    const nModified = await postVote(req.params.id:Request<string>, req.params.direction);
+    const nModified = await postVote(req.params.id, req.params.direction);
     if (nModified === 0) {
       res.status(404).send('No votes added');
     } else res.status(201).send(`Added ${nModified} vote(s)`);
@@ -60,5 +61,5 @@ async function postVote(req:Request, res: Response) : Promise<void> {
 }
 
 export {
-  getPopular, getByGenre, getByOLID, getById, postVote,
+  getPopularDiscover, getByGenreDiscover, getByOLIDDiscover, getByIdDiscover, postVoteDiscover,
 };
