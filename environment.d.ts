@@ -6,6 +6,7 @@ declare global {
       DB_URI: string = 'mongodb+srv://admin:cardshare1234@cluster0.hxpqg.mongodb.net/cardshare?retryWrites=true&w=majority'
       NODE_ENV: 'development' | 'production' | 'test';
       PORT?: string;
+      ORIGIN?: string;
     }
   }
 }

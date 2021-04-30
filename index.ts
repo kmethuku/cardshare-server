@@ -6,8 +6,13 @@ import cors from 'cors';
 import router from './router';
 import { db } from './db';
 
+require('dotenv').config();
+
+const PORT = (process.env.PORT as string);
+const ORIGIN = (process.env.ORIGIN as string);
+
 const server = express();
-const port:number = 3001;
+const port:number = Number(PORT) || 3001;
 
 interface Cors {
   origin: string;
@@ -15,7 +20,7 @@ interface Cors {
   credentials: boolean;
 }
 const corsOptions:Cors = {
-  origin: 'http://localhost:3000',
+  origin: ORIGIN,
   optionsSuccessStatus: 200,
   credentials: true,
 };
