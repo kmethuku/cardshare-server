@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { Users } from '../db';
 
 const createModel = require('../models/createModel');
 
@@ -15,11 +16,12 @@ async function getAllCreate(req:Request, res:Response) : Promise<void> {
 
 async function postOneCreate(req:Request, res:Response) : Promise<void> {
   try {
-    console.log(req.body)
     const nModified = await createModel.postOne(req.params.email, req.body);
+    const result = await Users.findOne({email: req.params.email})
     if (nModified === 0) {
-      res.status(404).send('No decks added');
-    } else res.status(201).send(`Added ${nModified}`);
+      res.send('No decks added').status(404);
+    // } else res.status(201).send(`Added ${nModified}`);
+    } else res.status(201).send(result);
   } catch (err) {
     res.status(404).send(err);
   }

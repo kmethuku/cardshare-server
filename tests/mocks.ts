@@ -67,6 +67,29 @@ export const testDeckArray = [
   }
 ]
 
+export const resultDeck =  {
+    // OLID: "NOTHING",
+    // cards: [
+    //   {
+    //     answer: "Yes.",
+    //     question: "Are you the first test card?",
+    //   },
+    //   {
+    //     answer: "No.",
+    //     question: "Are you the first test card?",
+    //   },
+    //   {
+    //     answer: "Yes.",
+    //     question: "Are you the third test card?",
+    //   },
+    // ],
+    creator: "Me",
+    description: "A deck for testing",
+    genre: "TestFiction",
+    src: "imagesrc",
+    title: "Test Deck",
+    votes: 12,
+  }
 
 // USERS
 export const testUser = {
@@ -79,18 +102,18 @@ export const testUser = {
 export const testUserArray = [
   {
     username: 'testUserOne',
-    email: 'test@userOne.com',
+    email: 'test@userone.com',
     myDecks: [],
     savedDecks: [],
   },
   {
     username: 'testUserTwo',
-    email: 'test@userTwo.com',
+    email: 'test@usertwo.com',
     myDecks: testDeckArray,
     savedDecks: [],
   }
 ]
 
-const mocks = { testUser, testUserArray, testCard, testCardArray, testDeck, testDeckArray }
+const mocks = { testUser, testUserArray, testCard, testCardArray, testDeck, testDeckArray, resultDeck }
 
 export default mocks;

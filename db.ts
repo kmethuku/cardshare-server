@@ -109,7 +109,7 @@ export interface Card {
   answer:string;
 }
 
-export interface Deck {
+export interface Deck extends Document {
   title: string;
   description: string;
   src: string;
