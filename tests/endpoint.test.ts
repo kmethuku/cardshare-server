@@ -6,6 +6,8 @@ import router from '../router';
 import supertest from 'supertest';
 import mongoose from 'mongoose';
 import { Users } from '../db';
+import mocks from './mocks'
+
 
 require('dotenv').config();
 
@@ -15,42 +17,42 @@ console.log(DB_URI)
 
 const port:number = Number(PORT) || 3001;
 
-/* eslint-disable */
-/* tslint-disable */
-describe('Integration tests', () => {
-
+describe('User endpoint testing', () => {
   const server = express();
   server.use(express.json());
   server.use(router);
   const request = supertest(server)
 
   beforeAll(async () => {
-    console.log('start')
-    // await mongoose.connect(DB_URI, { useNewUrlParser: true })
-    // mongoose.connection.once('open', () => console.log('database connected')
+    await mongoose.connect(DB_URI, { useNewUrlParser: true })
   })
 
-  afterEach(async (done) => {
+  afterAll(async (done) => {
     await Users.deleteMany();
-    // mongoose.connection.close();
-
+    mongoose.connection.close();
     done();
   })
 
   it('should save a new user to the database', async (done) => {
-    const user = {
-      username: 'TestUser',
-      email: 'test@user.com',
-    }
     const result = await request.post('/users')
-      .send(user);
+      .send(mocks.testUser);
 
-    const confirmUser = await Users.findOne({ email: user.email})
+    const confirmUser = await Users.findOne({ email: mocks.testUser.email})
     if (confirmUser && confirmUser.email) {
-      expect(confirmUser.email).toBe(user.email)
+      expect(confirmUser.email).toBe(mocks.testUser.email)
     }
     done();
+
   })
+
+  it('should get a user\'s profile information', async (done) => {
+
+    const result = await request.get(`/users/${mocks.testUser.email}`)
+    const userProfile = result.body[0]
+    expect(userProfile.email).toBe(mocks.testUser.email);
+    done();
+  })
+
 
 
 })
