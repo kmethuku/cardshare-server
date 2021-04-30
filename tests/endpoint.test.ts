@@ -13,8 +13,6 @@ require('dotenv').config();
 
 const PORT = (process.env.PORT as string);
 const DB_URI = (process.env.DB_URI as string);
-console.log(DB_URI)
-
 const port:number = Number(PORT) || 3001;
 
 describe('User endpoint testing', () => {
@@ -24,12 +22,13 @@ describe('User endpoint testing', () => {
   const request = supertest(server)
 
   beforeAll(async () => {
-    await mongoose.connect(DB_URI, { useNewUrlParser: true })
+    await mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   })
 
   afterAll(async (done) => {
     await Users.deleteMany();
     mongoose.connection.close();
+    console.log('here')
     done();
   })
 
@@ -41,6 +40,58 @@ describe('User endpoint testing', () => {
     if (confirmUser && confirmUser.email) {
       expect(confirmUser.email).toBe(mocks.testUser.email)
     }
+    done();
+  })
+
+  it('should get a user\'s profile information', async (done) => {
+
+    const result = await request.get(`/users/${mocks.testUser.email}`)
+    const userProfile = result.body[0]
+    expect(userProfile.email).toBe(mocks.testUser.email);
+    done();
+  })
+})
+
+describe('Decks & cards endpoint testing', () => {
+  const server = express();
+  server.use(express.json());
+  server.use(router);
+  const request = supertest(server)
+
+  beforeAll(async () => {
+    await mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    await Users.insertMany(mocks.testUserArray)
+  })
+
+  afterAll(async (done) => {
+    await Users.deleteMany();
+    mongoose.connection.close();
+    done();
+  })
+
+  // create a deck
+  // get all decks for a user
+  // get all saved decks for a user
+  // save one deck to a user
+
+  it('should add a newly created deck to a user\'s profile', async (done) => {
+    const result = request.post(`/myDecks/${mocks.testUserArray[0].email}`)
+      .send(mocks.testDeck)
+    const secondResult = request.post(`/myDecks/${mocks.testUserArray[1].email}`)
+      .send(mocks.testDeck)
+    const fullDecks = mocks.testUserArray[1].myDecks.concat(mocks.testDeck)
+
+    const firstUser = await Users.findOne({ email: mocks.testUserArray[0].email})
+    if (firstUser && firstUser.myDecks) {
+      console.log(firstUser)
+      expect(firstUser.myDecks).toBe(mocks.testDeck)
+    } else fail('User not found.')
+
+    const secondUser = await Users.findOne({ email: mocks.testUserArray[1].email})
+    if (secondUser && secondUser.myDecks) {
+      expect(secondUser.myDecks).toBe(fullDecks)
+    } else fail('User not found.')
+
     done();
 
   })
@@ -56,14 +107,3 @@ describe('User endpoint testing', () => {
 
 
 })
-
-
-
-
-describe("test sum function", () => {
-  it("should return 15 for add(10,5)", () => {
-    expect(10 + 5).toBe(15);
-  });
-});
-
-

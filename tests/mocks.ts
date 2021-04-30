@@ -1,20 +1,4 @@
 
-// USERS
-export const testUser = {
-  username: 'testUser',
-  email: 'test@user.com'
-}
-
-export const testUserArray = [
-  {
-    username: 'testUserOne',
-    email: 'test@userOne.com'
-  },
-  {
-    username: 'testUserTwo',
-    email: 'test@userTwo.com'
-  }
-]
 
 // CARDS
 export const testCard = {
@@ -80,6 +64,30 @@ export const testDeckArray = [
     OLID: 'NOTHING',
     votes: 15,
     creator: 'Me'
+  }
+]
+
+
+// USERS
+export const testUser = {
+  username: 'testUser',
+  email: 'test@user.com',
+  myDecks: [],
+  savedDecks: [],
+}
+
+export const testUserArray = [
+  {
+    username: 'testUserOne',
+    email: 'test@userOne.com',
+    myDecks: [],
+    savedDecks: [],
+  },
+  {
+    username: 'testUserTwo',
+    email: 'test@userTwo.com',
+    myDecks: testDeckArray,
+    savedDecks: [],
   }
 ]
 

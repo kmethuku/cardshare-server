@@ -15,6 +15,7 @@ async function getAllCreate(req:Request, res:Response) : Promise<void> {
 
 async function postOneCreate(req:Request, res:Response) : Promise<void> {
   try {
+    console.log(req.body)
     const nModified = await createModel.postOne(req.params.email, req.body);
     if (nModified === 0) {
       res.status(404).send('No decks added');
