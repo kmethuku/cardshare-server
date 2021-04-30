@@ -1,6 +1,10 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-mongoose.connect('mongodb+srv://admin:cardshare1234@cluster0.hxpqg.mongodb.net/cardshare?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+require('dotenv').config();
+
+const DB_URI = (process.env.DB_URI as string);
+
+mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 // eslint-disable-next-line no-console
@@ -129,4 +133,4 @@ export interface User extends Document {
 
 const Users = mongoose.model<User>('User', userSchema);
 
-export { Users };
+export { Users, db };
