@@ -35,5 +35,5 @@ async function postVote(id:string, direction:string) {
 }
 
 export {
-  getPopular, getByGenre, getByOLID, getById, postVote 
+  getPopular, getByGenre, getByOLID, getById, postVote,
 };

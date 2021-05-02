@@ -8,7 +8,7 @@ async function getAll(email:string) : Promise<User[]> {
 }
 
 async function postOne(email:string, body:Deck) {
-  const res = await Users.updateOne({ email }, { $push: { myDecks: body } });
+  const res = await Users.updateOne({ email }, { $push: { myDecks: body }});
   return res.nModified;
 }
 
