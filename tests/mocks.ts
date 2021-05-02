@@ -1,5 +1,3 @@
-
-
 // CARDS
 export const testCard = {
   question: 'Are you a test card?',
@@ -28,8 +26,8 @@ export const testDeck = {
   description: 'A deck for testing',
   src: 'imagesrc',
   cards: testCardArray,
-  genre: 'TestFiction',
-  OLID: 'NOTHING',
+  genre: 'self-growth',
+  OLID: 'OLIDtest',
   votes: 12,
   creator: 'Me'
 }
@@ -40,18 +38,18 @@ export const testDeckArray = [
     description: 'A deck for testing',
     src: 'imagesrc',
     cards: testCardArray,
-    genre: 'TestFiction',
-    OLID: 'SOMETHING',
+    genre: 'history',
+    OLID: 'OLID1',
     votes: 12,
     creator: 'Me'
   },
   {
-    title: 'Other Test Deck',
+    title: 'Second Test Deck',
     description: 'A deck for testing',
     src: 'imagesrc',
     cards: testCardArray,
-    genre: 'TestFiction',
-    OLID: 'NOTHING',
+    genre: 'self-growth',
+    OLID: 'OLID2',
     votes: 2,
     creator: 'Me'
   },
@@ -60,11 +58,83 @@ export const testDeckArray = [
     description: 'A deck for testing',
     src: 'imagesrc',
     cards: testCardArray,
-    genre: 'TestHistory',
-    OLID: 'NOTHING',
+    genre: 'self-growth',
+    OLID: 'OLID3',
     votes: 15,
     creator: 'Me'
   }
+]
+
+export const testUnpopularDeckArray = [
+  {
+    title: 'First Test Deck',
+    description: 'A deck for testing',
+    src: 'imagesrc',
+    cards: testCardArray,
+    genre: 'history',
+    OLID: 'OLIDunpopular1',
+    votes: 9,
+    creator: 'Me'
+  },
+  {
+    title: 'Second Test Deck',
+    description: 'A deck for testing',
+    src: 'imagesrc',
+    cards: testCardArray,
+    genre: 'self-growth',
+    OLID: 'OLIDunpopular2',
+    votes: 5,
+    creator: 'Me'
+  }
+]
+
+export const testPopularDeckArray = [
+  {
+    title: 'First Popular Test Deck',
+    description: 'A deck for testing',
+    src: 'imagesrc',
+    cards: testCardArray,
+    genre: 'history',
+    OLID: 'OLIDpopular1',
+    votes: 10,
+    creator: 'Me'
+  },
+  {
+    title: 'Second Popular Test Deck',
+    description: 'A deck for testing',
+    src: 'imagesrc',
+    cards: testCardArray,
+    genre: 'self-growth',
+    OLID: 'OLIDpopular2',
+    votes: 20,
+    creator: 'Me'
+  }
+]
+
+export const testHistoryDeckArray = [
+  {
+    title: 'First Test Deck',
+    description: 'A deck for testing',
+    src: 'imagesrc',
+    cards: testCardArray,
+    genre: 'history',
+    OLID: 'OLIDhistory',
+    votes: 8,
+    creator: 'Me'
+  },
+]
+
+export const testSelfGrowthDeckArray = [
+  {
+    title: 'First Test Deck',
+    description: 'A deck for testing',
+    src: 'imagesrc',
+    cards: testCardArray,
+    genre: 'self-growth',
+    OLID: 'OLIDselfgrowth',
+    votes: 8,
+    creator: 'Me'
+  },
 ]
 
 export const resultDeck =  {
@@ -111,9 +181,38 @@ export const testUserArray = [
     email: 'test@usertwo.com',
     myDecks: testDeckArray,
     savedDecks: [],
+  },
+  {
+    username: 'testUserThree',
+    email: 'test@userthree.com',
+    myDecks: testUnpopularDeckArray,
+    savedDecks: testPopularDeckArray,
+  },
+  {
+    username: 'testUserFour',
+    email: 'test@userfour.com',
+    myDecks: testPopularDeckArray,
+    savedDecks: [],
+  },
+  {
+    username: 'testUserFive',
+    email: 'test@userfive.com',
+    myDecks: testHistoryDeckArray,
+    savedDecks: [],
+  },
+  {
+    username: 'testUserSix',
+    email: 'test@usersix.com',
+    myDecks: testSelfGrowthDeckArray,
+    savedDecks: [],
   }
 ]
 
-const mocks = { testUser, testUserArray, testCard, testCardArray, testDeck, testDeckArray, resultDeck }
+export const discoverUserArrayResult = ['testUserTwo', 'testUserFour'];
+export const discoverHistoryArrayResult = ['testUserTwo', 'testUserThree', 'testUserFour', 'testUserFive'];
+export const discoverSelfGrowthArrayResult = ['testUserTwo', 'testUserThree', 'testUserFour', 'testUserSix'];
+
+const mocks = { testUser, testUserArray, testCard, testCardArray, testDeck, testDeckArray, resultDeck,
+  discoverUserArrayResult, discoverHistoryArrayResult, discoverSelfGrowthArrayResult}
 
 export default mocks;

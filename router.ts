@@ -42,6 +42,6 @@ router.get('/discover/OLID/:OLID', getByOLIDDiscover);
 
 router.get('/discover/:id', getByIdDiscover);
 
-router.post('/discover/vote/:id-:direction', postVoteDiscover);
+router.get('/discover/vote/:id-:direction', postVoteDiscover);
 
 export default router;
