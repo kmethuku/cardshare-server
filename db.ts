@@ -4,7 +4,11 @@ require('dotenv').config();
 
 const DB_URI = (process.env.DB_URI as string);
 
-mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 const db = mongoose.connection;
 
 // eslint-disable-next-line no-console

@@ -1,40 +1,32 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 import { Request, Response } from 'express';
-import { Users } from '../db';
-
-const createModel = require('../models/createModel');
+import { getAll, postOne, deleteOne } from '../models/createModel';
 
 async function getAllCreate(req:Request, res:Response) : Promise<void> {
   try {
-    const all = await createModel.getAll(req.params.email);
-    if (all.length === 0) {
-      res.status(404).send(all);
-    } else res.status(200).send(all);
+    const all = await getAll(req.params.email);
+    res.status(200).send(all);
   } catch (err) {
-    res.status(404).send(err);
+    res.status(500).send(err);
   }
 }
 
 async function postOneCreate(req:Request, res:Response) : Promise<void> {
   try {
-    const nModified = await createModel.postOne(req.params.email, req.body);
-    const result = await Users.findOne({email: req.params.email})
-    if (nModified === 0) {
-      res.send('No decks added').status(404);
-    // } else res.status(201).send(`Added ${nModified}`);
-    } else res.status(201).send(result);
+    const result = await postOne(req.params.email, req.body);
+    res.status(201).send(result);
   } catch (err) {
-    res.status(404).send(err);
+    res.status(500).send(err);
   }
 }
 
 async function deleteOneCreate(req:Request, res: Response) : Promise<void> {
   try {
-    const nDeleted = await createModel.deleteOne(req.params.email, req.params.id);
-    if (nDeleted === 0) {
-      res.status(404).send('No decks deleted');
-    } else res.status(200).send(`Deleted ${nDeleted}`);
+    await deleteOne(req.params.email, req.params.id);
+    res.status(204).send();
   } catch (err) {
-    res.status(404).send(err);
+    res.status(500).send(err);
   }
 }
 
