@@ -8,13 +8,17 @@ async function getAllSavedDecks(email:string) : Promise<Array<User>> {
 }
 
 async function saveOneDeck(email:string, body: any) : Promise<any> {
-  const res:any = await Users.updateOne({ email }, { $push: { savedDecks: body } });
-  return res.nModified;
+  const res = await Users.findOneAndUpdate({ email },
+    { $push: { savedDecks: body } },
+    { new: true });
+  return res;
 }
 
 async function deleteOneDeck(email:string, id: string) : Promise<any> {
-  const res:any = await Users.updateOne({ email }, { $pull: { savedDecks: { _id: id } } });
-  return res.nModified;
+  const res = await Users.findOneAndUpdate({ email },
+    { $pull: { savedDecks: { _id: id } } },
+    { new: true });
+  return res;
 }
 
 export { getAllSavedDecks, saveOneDeck, deleteOneDeck };

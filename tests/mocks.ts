@@ -1,24 +1,23 @@
 // CARDS
 export const testCard = {
   question: 'Are you a test card?',
-  answer: 'Yes.'
-}
+  answer: 'Yes.',
+};
 
 export const testCardArray = [
   {
     question: 'Are you the first test card?',
-    answer: 'Yes.'
+    answer: 'Yes.',
   },
   {
     question: 'Are you the first test card?',
-    answer: 'No.'
+    answer: 'No.',
   },
   {
     question: 'Are you the third test card?',
-    answer: 'Yes.'
-  }
-]
-
+    answer: 'Yes.',
+  },
+];
 
 // DECKS
 export const testDeck = {
@@ -29,8 +28,8 @@ export const testDeck = {
   genre: 'self-growth',
   OLID: 'OLIDtest',
   votes: 12,
-  creator: 'Me'
-}
+  creator: 'Me',
+};
 
 export const testDeckArray = [
   {
@@ -41,7 +40,7 @@ export const testDeckArray = [
     genre: 'history',
     OLID: 'OLID1',
     votes: 12,
-    creator: 'Me'
+    creator: 'Me',
   },
   {
     title: 'Second Test Deck',
@@ -51,7 +50,7 @@ export const testDeckArray = [
     genre: 'self-growth',
     OLID: 'OLID2',
     votes: 2,
-    creator: 'Me'
+    creator: 'Me',
   },
   {
     title: 'Third Test Deck',
@@ -61,9 +60,9 @@ export const testDeckArray = [
     genre: 'self-growth',
     OLID: 'OLID3',
     votes: 15,
-    creator: 'Me'
-  }
-]
+    creator: 'Me',
+  },
+];
 
 export const testUnpopularDeckArray = [
   {
@@ -74,7 +73,7 @@ export const testUnpopularDeckArray = [
     genre: 'history',
     OLID: 'OLIDunpopular1',
     votes: 9,
-    creator: 'Me'
+    creator: 'Me',
   },
   {
     title: 'Second Test Deck',
@@ -84,9 +83,9 @@ export const testUnpopularDeckArray = [
     genre: 'self-growth',
     OLID: 'OLIDunpopular2',
     votes: 5,
-    creator: 'Me'
-  }
-]
+    creator: 'Me',
+  },
+];
 
 export const testPopularDeckArray = [
   {
@@ -107,9 +106,9 @@ export const testPopularDeckArray = [
     genre: 'self-growth',
     OLID: 'OLIDpopular2',
     votes: 20,
-    creator: 'Me'
-  }
-]
+    creator: 'Me',
+  },
+];
 
 export const testHistoryDeckArray = [
   {
@@ -120,9 +119,9 @@ export const testHistoryDeckArray = [
     genre: 'history',
     OLID: 'OLIDhistory',
     votes: 8,
-    creator: 'Me'
+    creator: 'Me',
   },
-]
+];
 
 export const testSelfGrowthDeckArray = [
   {
@@ -133,33 +132,18 @@ export const testSelfGrowthDeckArray = [
     genre: 'self-growth',
     OLID: 'OLIDselfgrowth',
     votes: 8,
-    creator: 'Me'
+    creator: 'Me',
   },
-]
+];
 
-export const resultDeck =  {
-    // OLID: "NOTHING",
-    // cards: [
-    //   {
-    //     answer: "Yes.",
-    //     question: "Are you the first test card?",
-    //   },
-    //   {
-    //     answer: "No.",
-    //     question: "Are you the first test card?",
-    //   },
-    //   {
-    //     answer: "Yes.",
-    //     question: "Are you the third test card?",
-    //   },
-    // ],
-    creator: "Me",
-    description: "A deck for testing",
-    genre: "TestFiction",
-    src: "imagesrc",
-    title: "Test Deck",
-    votes: 12,
-  }
+export const resultDeck = {
+  creator: 'Me',
+  description: 'A deck for testing',
+  genre: 'TestFiction',
+  src: 'imagesrc',
+  title: 'Test Deck',
+  votes: 12,
+};
 
 // USERS
 export const testUser = {
@@ -167,7 +151,7 @@ export const testUser = {
   email: 'test@user.com',
   myDecks: [],
   savedDecks: [],
-}
+};
 
 export const testUserArray = [
   {
@@ -205,14 +189,24 @@ export const testUserArray = [
     email: 'test@usersix.com',
     myDecks: testSelfGrowthDeckArray,
     savedDecks: [],
-  }
-]
+  },
+];
 
 export const discoverUserArrayResult = ['testUserTwo', 'testUserFour'];
 export const discoverHistoryArrayResult = ['testUserTwo', 'testUserThree', 'testUserFour', 'testUserFive'];
 export const discoverSelfGrowthArrayResult = ['testUserTwo', 'testUserThree', 'testUserFour', 'testUserSix'];
 
-const mocks = { testUser, testUserArray, testCard, testCardArray, testDeck, testDeckArray, resultDeck,
-  discoverUserArrayResult, discoverHistoryArrayResult, discoverSelfGrowthArrayResult}
+const mocks = {
+  testUser,
+  testUserArray,
+  testCard,
+  testCardArray,
+  testDeck,
+  testDeckArray,
+  resultDeck,
+  discoverUserArrayResult,
+  discoverHistoryArrayResult,
+  discoverSelfGrowthArrayResult,
+};
 
 export default mocks;

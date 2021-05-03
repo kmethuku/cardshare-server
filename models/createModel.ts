@@ -8,13 +8,14 @@ async function getAll(email:string) : Promise<User[]> {
 }
 
 async function postOne(email:string, body:Deck) {
-  const res = await Users.updateOne({ email }, { $push: { myDecks: body }});
-  return res.nModified;
+  const res = await Users.findOneAndUpdate({ email }, { $push: { myDecks: body } }, { new: true });
+  return res;
 }
 
 async function deleteOne(email:string, id:string) {
-  const res = await Users.updateOne({ email }, { $pull: { myDecks: { _id: id } } });
-  return res.nModified;
+  const res = await Users.findOneAndUpdate({ email },
+    { $pull: { myDecks: { _id: id } } }, { new: true });
+  return res;
 }
 
 export { getAll, postOne, deleteOne };

@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
-import { UpdateWriteOpResult } from 'mongoose';
 import { Users, User } from '../db';
 
 async function getPopular() : Promise<Array<User>> {
@@ -28,10 +27,10 @@ async function getById(id:string) {
 }
 
 async function postVote(id:string, direction:string) {
-  let res: UpdateWriteOpResult | null = null;
-  if (direction === 'up') res = await Users.updateOne({ 'myDecks._id': id }, { $inc: { 'myDecks.$.votes': 1 } });
-  else if (direction === 'down') res = await Users.updateOne({ 'myDecks._id': id }, { $inc: { 'myDecks.$.votes': -1 } });
-  return res?.nModified || 0;
+  let res;
+  if (direction === 'up') res = await Users.findOneAndUpdate({ 'myDecks._id': id }, { $inc: { 'myDecks.$.votes': 1 } }, { new: true });
+  else if (direction === 'down') res = await Users.findOneAndUpdate({ 'myDecks._id': id }, { $inc: { 'myDecks.$.votes': -1 } }, { new: true });
+  return res;
 }
 
 export {
