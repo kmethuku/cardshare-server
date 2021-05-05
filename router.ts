@@ -6,7 +6,9 @@ import { getAllCreate, postOneCreate, deleteOneCreate } from './controllers/crea
 import {
   getPopularDiscover, getByGenreDiscover, getByOLIDDiscover, getByIdDiscover, postVoteDiscover,
 } from './controllers/discoverController';
-import { getAllStudy, getOneStudy, saveOneStudy, deleteOneStudy } from './controllers/studyController';
+import {
+  getAllStudy, getOneStudy, saveOneStudy, deleteOneStudy,
+} from './controllers/studyController';
 
 const router = Router();
 
