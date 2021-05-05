@@ -1,12 +1,22 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import { Request, Response } from 'express';
-import { getAll, postOne, deleteOne } from '../models/createModel';
+import { getAll, getOne, postOne, deleteOne } from '../models/createModel';
 
 async function getAllCreate(req:Request, res:Response) : Promise<void> {
   try {
     const all = await getAll(req.params.email);
     res.status(200).send(all);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
+async function getOneCreate(req:Request, res:Response) : Promise<void> {
+  try {
+    const one:Array<any> = await getOne(req.params.email, req.params.id);
+    console.log(one)
+    res.status(200).send(one);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -30,4 +40,4 @@ async function deleteOneCreate(req:Request, res: Response) : Promise<void> {
   }
 }
 
-export { getAllCreate, postOneCreate, deleteOneCreate };
+export { getAllCreate, getOneCreate, postOneCreate, deleteOneCreate };
