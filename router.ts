@@ -6,7 +6,7 @@ import { getAllCreate, postOneCreate, deleteOneCreate } from './controllers/crea
 import {
   getPopularDiscover, getByGenreDiscover, getByOLIDDiscover, getByIdDiscover, postVoteDiscover,
 } from './controllers/discoverController';
-import { getAllStudy, saveOneStudy, deleteOneStudy } from './controllers/studyController';
+import { getAllStudy, getOneStudy, saveOneStudy, deleteOneStudy } from './controllers/studyController';
 
 const router = Router();
 
@@ -28,6 +28,8 @@ router.delete('/myDecks/:email-:id', deleteOneCreate);
 
 // for saved decks
 router.get('/savedDecks/:email', getAllStudy);
+
+router.get('/savedDeck/:email-:id', getOneStudy);
 
 router.post('/savedDecks/:email', saveOneStudy);
 
