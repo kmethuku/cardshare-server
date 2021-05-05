@@ -28,6 +28,9 @@ const corsOptions:Cors = {
 server.use(cors(corsOptions));
 server.use(express.json());
 server.use(router);
+server.get('*', (req, res) => {
+  res.status(400).send('No routes found');
+});
 
 (async (): Promise<any> => {
   await db.once('open', () => {

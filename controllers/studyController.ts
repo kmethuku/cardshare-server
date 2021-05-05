@@ -1,12 +1,21 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import { Request, Response } from 'express';
-import { getAllSavedDecks, saveOneDeck, deleteOneDeck } from '../models/studyModel';
+import { getAllSavedDecks, getOneSavedDeck, saveOneDeck, deleteOneDeck } from '../models/studyModel';
 
 async function getAllStudy(req:Request, res:Response) : Promise<void> {
   try {
     const all : Array<any> = await getAllSavedDecks(req.params.email);
     res.status(200).send(all);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
+async function getOneStudy(req:Request, res:Response) : Promise<void> {
+  try {
+    const one : Array<any> = await getOneSavedDeck(req.params.email, req.params.id);
+    res.status(200).send(one);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -30,4 +39,4 @@ async function deleteOneStudy(req:Request, res:Response) : Promise<void> {
   }
 }
 
-export { getAllStudy, saveOneStudy, deleteOneStudy };
+export { getAllStudy, getOneStudy, saveOneStudy, deleteOneStudy };
