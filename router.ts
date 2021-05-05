@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import { Router } from 'express';
 import { postOneUser, getOneUser, deleteAllUser } from './controllers/userController';
-import { getAllCreate, postOneCreate, deleteOneCreate } from './controllers/createController';
+import { getAllCreate, getOneCreate, postOneCreate, deleteOneCreate } from './controllers/createController';
 import {
   getPopularDiscover, getByGenreDiscover, getByOLIDDiscover, getByIdDiscover, postVoteDiscover,
 } from './controllers/discoverController';
@@ -23,6 +23,8 @@ router.delete('/users', deleteAllUser);
 
 // for created decks
 router.get('/myDecks/:email', getAllCreate);
+
+router.get('/myDeck/:email-:id', getOneCreate);
 
 router.post('/myDecks/:email', postOneCreate);
 

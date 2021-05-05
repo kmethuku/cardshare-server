@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import { Users, User, Deck } from '../db';
@@ -5,6 +6,12 @@ import { Users, User, Deck } from '../db';
 async function getAll(email:string) : Promise<User[]> {
   const all = await Users.find({ email }, 'myDecks');
   return all;
+}
+
+async function getOne(email:string, id:string) : Promise<any> {
+  const one:Array<User> = await Users.find({ email }, 'myDecks');
+  const deck = one[0].myDecks.filter((ele) => id === String(ele._id));
+  return deck[0];
 }
 
 async function postOne(email:string, body:Deck) {
@@ -18,4 +25,4 @@ async function deleteOne(email:string, id:string) {
   return res;
 }
 
-export { getAll, postOne, deleteOne };
+export { getAll, getOne, postOne, deleteOne };
