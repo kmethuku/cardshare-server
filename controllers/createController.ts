@@ -15,7 +15,6 @@ async function getAllCreate(req:Request, res:Response) : Promise<void> {
 async function getOneCreate(req:Request, res:Response) : Promise<void> {
   try {
     const one:Array<any> = await getOne(req.params.email, req.params.id);
-    console.log(one)
     res.status(200).send(one);
   } catch (err) {
     res.status(500).send(err);
