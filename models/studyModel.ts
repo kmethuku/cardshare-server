@@ -27,4 +27,6 @@ async function deleteOneDeck(email:string, id: string) : Promise<any> {
   return res;
 }
 
-export { getAllSavedDecks, getOneSavedDeck, saveOneDeck, deleteOneDeck };
+export {
+  getAllSavedDecks, getOneSavedDeck, saveOneDeck, deleteOneDeck,
+};

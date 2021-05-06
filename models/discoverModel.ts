@@ -3,6 +3,9 @@
 /* eslint-disable import/no-unresolved */
 import { Users, User } from '../db';
 
+// I changed a few of these routes because
+// @elemMatch was only returning the first matched element
+
 async function getPopular() : Promise<Array<User>> {
   const all:Array<User> = await Users.find();
   const result: any[] = [];
@@ -30,8 +33,6 @@ async function getPopular() : Promise<Array<User>> {
   return result;
 }
 
-// @elemMatch returns only the first matched element
-
 async function getByGenre(genre:string) {
   const allUsers = await Users.find();
   const resultDecks: any[] = [];
@@ -47,7 +48,7 @@ async function getByGenre(genre:string) {
         genre: deck.genre,
         OLID: deck.OLID,
         cards: deck.cards,
-        creator: user,
+        creator: user.username,
       });
     });
   });

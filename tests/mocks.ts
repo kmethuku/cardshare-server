@@ -96,7 +96,7 @@ export const testPopularDeckArray = [
     genre: 'history',
     OLID: 'OLIDpopular1',
     votes: 10,
-    creator: 'Me'
+    creator: 'Me',
   },
   {
     title: 'Second Popular Test Deck',
