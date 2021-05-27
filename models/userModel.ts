@@ -9,7 +9,7 @@ async function postOne(body: any) {
 
 // eslint-disable-next-line no-unused-vars
 async function getOne(email:string) : Promise<Array<User>> {
-  const one:Array<User> = await Users.find({ email }); // deleted email: email within {}
+  const one:Array<User> = await Users.find({ email });
   return one;
 }
 

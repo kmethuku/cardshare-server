@@ -3,9 +3,6 @@
 /* eslint-disable import/no-unresolved */
 import { Users, User } from '../db';
 
-// I changed a few of these routes because
-// @elemMatch was only returning the first matched element
-
 async function getPopular() : Promise<Array<User>> {
   const all:Array<User> = await Users.find();
   const result: any[] = [];

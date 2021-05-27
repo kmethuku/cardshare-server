@@ -1,6 +1,5 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
-import './config';
 import express from 'express';
 import cors from 'cors';
 import router from './router';

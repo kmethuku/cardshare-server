@@ -14,34 +14,6 @@ const db = mongoose.connection;
 // eslint-disable-next-line no-console
 db.on('error', console.error.bind(console, 'connection error:'));
 
-// this is not implemented, couldn't get multer to work
-// const highlightSchema = new Schema({
-//   lastModified: {
-//     type: Number,
-//     required: true
-//   },
-//   lastModifiedDate: {
-//     type: Date,
-//     required: true
-//   },
-//   name: {
-//     type: String,
-//     required: true
-//   },
-//   size: {
-//     type: Number,
-//     required: true
-//   },
-//   type: {
-//     type: String,
-//     required: true
-//   },
-//   webkitRelativePath: {
-//     type: String,
-//     required: true
-//   },
-// });
-
 const cardSchema = new Schema({
   question: {
     type: String,
@@ -130,10 +102,6 @@ export interface User extends Document {
   myDecks: Array<Deck>;
   savedDecks: Array<Deck>;
 }
-
-/**
- * Document<User>
- */
 
 const Users = mongoose.model<User>('User', userSchema);
 
