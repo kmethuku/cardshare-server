@@ -1,6 +1,5 @@
 /* eslint-disable */
 /* tslint-disable */
-import '../config';
 import express from 'express';
 import router from '../router';
 import supertest from 'supertest';
@@ -48,7 +47,7 @@ describe('User endpoint testing', () => {
     expect(userProfile.email).toBe(mocks.testUser.email);
     done();
   })
-  
+
   it('should get 404 status with put method', async (done) => {
     const response = await request.put(`/users/${mocks.testUser.email}`)
     expect(response.status).toBe(404);
@@ -105,83 +104,6 @@ describe('Create end point testing', () => {
     done();
   });
 
-})
-
-describe ('Discover end point testing', () => {
-  const server = express();
-  server.use(express.json());
-  server.use(router);
-  const request = supertest(server)
-
-  beforeAll(async () => {
-    await mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    await Users.insertMany(mocks.testUserArray)
-  })
-
-  afterAll(async (done) => {
-    await Users.deleteMany();
-    mongoose.connection.close();
-    done();
-  })
-
-  it('should get array of popular decks', async (done) => {
-    const result = await request.get(`/discover/`);
-    const usernameResult = result.body.map((user:any)=> user.username)
-    expect(usernameResult).toEqual(mocks.discoverUserArrayResult)
-    done();
-  });
-
-  it('should get array of Users by genre deck - history', async (done) => {
-    const result = await request.get(`/discover/genre/history`);
-    const usernameResult = result.body.map((user:any)=> user.username)
-    expect(usernameResult).toEqual(mocks.discoverHistoryArrayResult)
-    done();
-  });
-  it('should get array of Users by genre deck - self-growth', async (done) => {
-    const result = await request.get(`/discover/genre/self-growth`);
-    const usernameResult = result.body.map((user:any)=> user.username)
-    expect(usernameResult).toEqual(mocks.discoverSelfGrowthArrayResult)
-    done();
-  });
-  it('should get array of Users by OLID', async (done) => {
-    const result = await request.get(`/discover/OLID/OLID2`);
-    const usernameResult = result.body.map((user:any)=> user.username)
-    expect(usernameResult).toEqual(["testUserTwo"])
-    done();
-  });
-  it('should get array of Users by deck id', async (done) => {
-    const result:any = await request.get('/discover/genre/history');
-    const resultUser = result.body[0].username;
-    const resultDeckId = result.body[0].myDecks[0]._id;
-    const userResult = await request.get('/discover/'+resultDeckId)
-    expect(resultUser).toEqual(userResult.body[0].username)
-    done();
-  });
-  it('should get array of Users by deck id to vote up', async (done) => {
-    const result:any = await request.get('/discover/genre/history');
-    const resultUserVotes = result.body[0].myDecks[0].votes;
-    const resultDeckId = result.body[0].myDecks[0]._id;
-    const voteUp = await request.get('/discover/vote/'+resultDeckId+"-up")
-    const userResult = await request.get('/discover/'+resultDeckId)
-    expect(resultUserVotes+1).toEqual(userResult.body[0].myDecks[0].votes);
-    done();
-  });
-  it('should get array of Users by deck id to vote down', async (done) => {
-    const result:any = await request.get('/discover/genre/history');
-    const resultUserVotes = result.body[0].myDecks[0].votes;
-    const resultDeckId = result.body[0].myDecks[0]._id;
-    const voteUp = await request.get('/discover/vote/'+resultDeckId+"-down")
-    const userResult = await request.get('/discover/'+resultDeckId)
-    expect(resultUserVotes-1).toEqual(userResult.body[0].myDecks[0].votes);
-    done();
-  });
-
-  it('should get 404 status with put method, discover', async (done) => {
-    const response = await request.put('/discover/genre/history')
-    expect(response.status).toBe(404);
-    done();
-  })
-  
 })
 
 describe('Study deck end point testing', () => {
