@@ -1,10 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
-import { Users, User } from '../db';
+import { Users } from '../db';
+import { User } from '../interfaces';
 
 async function getPopular() : Promise<Array<User>> {
-  const all:Array<User> = await Users.find();
+  const all: Array<User> = await Users.find();
   const result: any[] = [];
   for (let i = 0; i < all.length; i += 1) {
     const user: User = all[i];
@@ -26,11 +27,10 @@ async function getPopular() : Promise<Array<User>> {
       }
     }
   }
-
   return result;
 }
 
-async function getByGenre(genre:string) {
+async function getByGenre(genre: string) {
   const allUsers = await Users.find();
   const resultDecks: any[] = [];
   allUsers.forEach((user: User) => {
@@ -52,19 +52,19 @@ async function getByGenre(genre:string) {
   return resultDecks;
 }
 
-async function getByOLID(OLID:string) {
+async function getByOLID(OLID: string) {
   const some = await Users.find({ myDecks: { $elemMatch: { OLID } } },
     { username: 1, myDecks: { $elemMatch: { OLID } } });
   return some;
 }
 
-async function getById(id:string) {
+async function getById(id: string) {
   const some = await Users.find({ myDecks: { $elemMatch: { _id: id } } },
     { username: 1, myDecks: { $elemMatch: { _id: id } } });
   return some;
 }
 
-async function postVote(id:string, direction:string) {
+async function postVote(id: string, direction: string) {
   let res;
   if (direction === 'up') res = await Users.findOneAndUpdate({ 'myDecks._id': id }, { $inc: { 'myDecks.$.votes': 1 } }, { new: true });
   else if (direction === 'down') res = await Users.findOneAndUpdate({ 'myDecks._id': id }, { $inc: { 'myDecks.$.votes': -1 } }, { new: true });

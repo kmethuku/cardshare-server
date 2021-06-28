@@ -5,7 +5,7 @@ import {
   getPopular, getByGenre, getByOLID, getById, postVote,
 } from '../models/discoverModel';
 
-async function getPopularDiscover(req:Request, res:Response) : Promise<void> {
+async function getPopularDiscover(req: Request, res: Response) : Promise<void> {
   try {
     const all = await getPopular();
     res.status(200).send(all);
@@ -14,7 +14,7 @@ async function getPopularDiscover(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function getByGenreDiscover(req:Request, res:Response) : Promise<void> {
+async function getByGenreDiscover(req: Request, res: Response) : Promise<void> {
   try {
     const some = await getByGenre(req.params.genre);
     res.status(200).send(some);
@@ -23,7 +23,7 @@ async function getByGenreDiscover(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function getByOLIDDiscover(req:Request, res:Response) : Promise<void> {
+async function getByOLIDDiscover(req: Request, res: Response) : Promise<void> {
   try {
     const some = await getByOLID(req.params.OLID);
     res.status(200).send(some);
@@ -32,7 +32,7 @@ async function getByOLIDDiscover(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function getByIdDiscover(req:Request, res:Response) : Promise<void> {
+async function getByIdDiscover(req: Request, res: Response) : Promise<void> {
   try {
     const some = await getById(req.params.id);
     res.status(200).send(some);
@@ -41,7 +41,7 @@ async function getByIdDiscover(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function postVoteDiscover(req:Request, res: Response) : Promise<void> {
+async function postVoteDiscover(req: Request, res: Response) : Promise<void> {
   try {
     const result = await postVote(req.params.id, req.params.direction);
     res.status(201).send(result);

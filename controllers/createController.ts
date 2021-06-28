@@ -3,7 +3,7 @@
 import { Request, Response } from 'express';
 import { getAll, getOne, postOne, deleteOne } from '../models/createModel';
 
-async function getAllCreate(req:Request, res:Response) : Promise<void> {
+async function getAllCreate(req: Request, res: Response) : Promise<void> {
   try {
     const all = await getAll(req.params.email);
     res.status(200).send(all);
@@ -12,16 +12,16 @@ async function getAllCreate(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function getOneCreate(req:Request, res:Response) : Promise<void> {
+async function getOneCreate(req: Request, res: Response) : Promise<void> {
   try {
-    const one:Array<any> = await getOne(req.params.email, req.params.id);
+    const one: Array<any> = await getOne(req.params.email, req.params.id);
     res.status(200).send(one);
   } catch (err) {
     res.status(500).send(err);
   }
 }
 
-async function postOneCreate(req:Request, res:Response) : Promise<void> {
+async function postOneCreate(req: Request, res: Response) : Promise<void> {
   try {
     const result = await postOne(req.params.email, req.body);
     res.status(201).send(result);
@@ -30,7 +30,7 @@ async function postOneCreate(req:Request, res:Response) : Promise<void> {
   }
 }
 
-async function deleteOneCreate(req:Request, res: Response) : Promise<void> {
+async function deleteOneCreate(req: Request, res: Response) : Promise<void> {
   try {
     await deleteOne(req.params.email, req.params.id);
     res.status(204).send();

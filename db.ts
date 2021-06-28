@@ -1,8 +1,7 @@
-import mongoose, { Schema, Document } from 'mongoose';
-
+import mongoose, { Schema } from 'mongoose';
 require('dotenv').config();
-
 const DB_URI = (process.env.DB_URI as string);
+import { User } from './interfaces';
 
 mongoose.connect(DB_URI, {
   useNewUrlParser: true,
@@ -79,29 +78,6 @@ const userSchema = new Schema({
     required: false,
   },
 });
-
-export interface Card {
-  question:string;
-  answer:string;
-}
-
-export interface Deck extends Document {
-  title: string;
-  description: string;
-  src: string;
-  cards: Array<Card>;
-  genre: string;
-  OLID: string;
-  votes: number;
-  creator: string;
-}
-
-export interface User extends Document {
-  username: string;
-  email: string;
-  myDecks: Array<Deck>;
-  savedDecks: Array<Deck>;
-}
 
 const Users = mongoose.model<User>('User', userSchema);
 
