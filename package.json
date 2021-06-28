@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "jest --detectOpenHandles",
     "start": "ts-node index.ts",
-    "start:prod": "node dist/main.js"
+    "start:prod": "ts-node dist/main.js"
   },
   "keywords": [],
   "author": "",
