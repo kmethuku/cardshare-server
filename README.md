@@ -1,4 +1,6 @@
-**Cardshare is available at [cardshare.vercel.app](https://cardshare.vercel.app) 📚 🤓**
+**Cardshare is available at [cardshare.vercel.app](https://cardshare.vercel.app) 📚 ✍ 🤓**
+
+[Watch the demo video here.](https://youtu.be/ZjXqT6X9KGs)
 
 ![image](https://user-images.githubusercontent.com/74379281/123908819-f3fa7d00-d92c-11eb-8edf-ecaf13ccf18b.png)
 
@@ -42,6 +44,3 @@ Testing: Jest, Supertest
 Owner/Creator: Kiranmayi Methuku
 
 Contributors: Kimberly Innes (https://github.com/kjinnes) and Louisa Wong (https://github.com/louisawong)
-
-![image](https://user-images.githubusercontent.com/74379281/123909213-8864df80-d92d-11eb-85e2-f83f819e2b49.png)
-
