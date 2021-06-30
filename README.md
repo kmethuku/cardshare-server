@@ -42,3 +42,6 @@ Testing: Jest, Supertest
 Owner/Creator: Kiranmayi Methuku
 
 Contributors: Kimberly Innes (https://github.com/kjinnes) and Louisa Wong (https://github.com/louisawong)
+
+![image](https://user-images.githubusercontent.com/74379281/123909213-8864df80-d92d-11eb-85e2-f83f819e2b49.png)
+
