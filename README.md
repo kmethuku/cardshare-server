@@ -10,7 +10,7 @@ This is the server repo. Client repo is here: https://github.com/kmethuku/cardsh
 
 ## Project Info
 
-**Cardshare** is a flashcard hub for books outside of the formal education context, made for lifelong learners.
+**Cardshare** is a flashcard sharing application for books outside of the formal education context, made for lifelong learners.
 
 Users can: 
   * Create flashcard decks
