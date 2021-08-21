@@ -18,7 +18,7 @@ async function getOne(email: string, id: string) : Promise<any> {
 async function postOne(email: string, body: Deck) {
   const user = await Users.findOne({ email });
   const username = user?.username;
-  const newBody = {...body, creator: username };
+  const newBody = { ...body, creator: username };
   const res = await Users.findOneAndUpdate({ email },
     { $push: { myDecks: newBody } },
     { new: true });
